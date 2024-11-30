@@ -19,7 +19,7 @@ export default function MyApp() {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/getProducts")
+    fetch("/api/getProducts")
       .then((res) => res.json())
 
       .then((data) => {
