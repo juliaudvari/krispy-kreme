@@ -15,15 +15,6 @@ const theme = createTheme({
   },
 });
 
-// Define images for each product
-const productImages = {
-  "original glazed dozen": "/images/original.png",
-  "the grinch dozen": "/images/the-grinch-dozen.png",
-  "favourites dozen": "/images/favourites-dozen.png",
-  "vegan selection dozen": "/images/vegan-selection-dozen.png",
-  "assorted dozen": "/images/assorted-dozen.png",
-};
-
 export default function Products() {
   const [products, setProducts] = useState([]);
 
@@ -53,6 +44,17 @@ export default function Products() {
     } catch (error) {
       console.error("An error occurred while adding to cart:", error);
     }
+  };
+
+  // Map of product names to their image filenames
+  const productImages = {
+    "original glazed dozen": "/images/original.png",
+    "the grinch dozen": "/images/grinch.png",
+    "favourites dozen": "/images/fav.png",
+    "vegan selection dozen": "/images/vegan.png",
+    "assorted dozen": "/images/assorted.png",
+    "unicorn 6 pack": "/images/unicorn.png",
+    "doughnut bites": "/images/bites.png",
   };
 
   return (
@@ -88,20 +90,16 @@ export default function Products() {
                     textAlign: "center",
                   }}
                 >
-                  {/* Product Image */}
-                  <Box
-                    component="img"
-                    src={productImages[product.pname] || "/images/default.png"} // Default image if not specified
+                  <img
+                    src={productImages[product.pname]}
                     alt={product.pname}
-                    sx={{
+                    style={{
                       width: "100%",
-                      maxHeight: "200px",
-                      objectFit: "cover",
-                      borderRadius: 2,
-                      marginBottom: 2,
+                      height: "auto",
+                      borderRadius: "8px",
+                      marginBottom: "8px",
                     }}
                   />
-                  {/* Product Name */}
                   <Typography
                     variant="h6"
                     sx={{
@@ -111,7 +109,6 @@ export default function Products() {
                   >
                     {product.pname}
                   </Typography>
-                  {/* Product Price */}
                   <Typography
                     variant="body1"
                     sx={{
@@ -121,7 +118,6 @@ export default function Products() {
                   >
                     Price: €{product.price}
                   </Typography>
-                  {/* Add to Cart Button */}
                   <Button
                     variant="contained"
                     color="primary"
